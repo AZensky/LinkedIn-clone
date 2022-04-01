@@ -1,8 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./Sidebar.css";
 import { Avatar } from "@mui/material";
+import { selectUser } from "../../features/userSlice";
 
 function Sidebar() {
+  const user = useSelector(selectUser);
+
   //Cool function trick to allow me to create reusable elements without a component
   const recentItem = (topic) => (
     <div className="sidebar__recentItem">
@@ -17,9 +21,12 @@ function Sidebar() {
           src="https://images.unsplash.com/photo-1614850523011-8f49ffc73908?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ymx1ZSUyMGJhY2tncm91bmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
           alt=""
         />
-        <Avatar className="sidebar__avatar" />
-        <h2>Alex Zelinsky</h2>
-        <h4>a.zelinsky@gmail.com</h4>
+        <Avatar src={user.photoURL} className="sidebar__avatar">
+          {/* If no photoURL, we are getting the first letter of their image, and displaying it as their avatar */}
+          {user.email[0]}
+        </Avatar>
+        <h2>{user.displayName}</h2>
+        <h4>{user.email}</h4>
       </div>
 
       <div className="sidebar__stats">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./Feed.css";
 import CreateIcon from "@mui/icons-material/Create";
 import ImageIcon from "@mui/icons-material/Image";
@@ -9,8 +10,10 @@ import InputOption from "./InputOption";
 import Post from "./Post";
 import { db } from "../../firebase.js";
 import { serverTimestamp } from "firebase/firestore";
+import { selectUser } from "../../features/userSlice";
 
 function Feed() {
+  const user = useSelector(selectUser);
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
 
@@ -32,10 +35,10 @@ function Feed() {
     e.preventDefault();
 
     db.collection("posts").add({
-      name: "Alex Zelinsky",
-      description: "test",
+      name: user.displayName,
+      description: user.email,
       message: input,
-      photoUrl: "",
+      photoUrl: user.photoUrl || "",
       //   Getting a timestamp, so that we will be able to order our posts by the timestamp to ensure they are in correct order.
       timestamp: serverTimestamp(),
     });
