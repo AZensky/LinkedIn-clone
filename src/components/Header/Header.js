@@ -23,7 +23,7 @@ function Header() {
     <div className="header">
       <div className="header__left">
         <img
-          src="https://cdn-icons.flaticon.com/png/128/3536/premium/3536505.png?token=exp=1648765999~hmac=958fa7ecf331afbcb1c02ad91709416b"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png"
           alt="LinkedInLogo"
         />
         <div className="header__search">
